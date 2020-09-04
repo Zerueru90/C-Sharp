@@ -21,12 +21,6 @@ namespace Uppgift1b
             bool b;
             string sant, input1, input2;
 
-            /* implicit konvertering
-            int h = 10;
-            long u = h;
-            */
-
-
             //1. tilldela variabel i värdet 10
             //Kod här
 
