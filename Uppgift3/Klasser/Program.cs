@@ -12,21 +12,25 @@ namespace Klasser
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            string regnr;
-            string modellnamn;
+            string regnr, modellnamn, namn;
+            int vikt, ålder;
+            bool elbil = false, loop = true;
             DateTime regdatum;
-            int vikt;
-            string namn;
-            int ålder;
-            bool elbil = false;
 
             Bil bil;
             Person person;
             List <Person> listPersoner = new List<Person>();
-            bool loop = true;
 
             while (loop)
             {
+
+                Console.Write("Namn: ");
+                namn = Console.ReadLine();
+
+                Console.Write("Ålder: ");
+                ålder = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("------------------------------- \nBil information");
                 Console.Write("\nModel: ");
                 modellnamn = Console.ReadLine();
 
@@ -56,24 +60,20 @@ namespace Klasser
 
                 bil = new Bil(modellnamn, vikt, regdatum, elbil, regnr);
 
-                Console.Write("Namn: ");
-                namn = Console.ReadLine();
-
-                Console.Write("Ålder: ");
-                ålder = int.Parse(Console.ReadLine());
-
                 person = new Person(namn, ålder, bil);
 
                 listPersoner.Add(person);
 
                 foreach (var item in listPersoner)
                 {
-                    Console.WriteLine($"\nNamn: {item.Namn} " +
+                    Console.WriteLine("-------------------------------");
+                    Console.WriteLine($"Namn: {item.Namn} " +
                                       $"\nÅlder: {item.Ålder} " +
                                       $"\nModel: {item.Bil.Modellnamn} " +
                                       $"\nRegistreringsnummer: {item.Bil.RegNr} " +
                                       $"\nReg Datum: {item.Bil.DateTime} " +
                                       $"\n {item.Bil.ToString()}");
+                    Console.WriteLine("-------------------------------");
                 }
 
                 Console.Write("\nDo you want to quit? y/n: ");
