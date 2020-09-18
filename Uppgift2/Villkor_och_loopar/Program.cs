@@ -31,7 +31,7 @@ namespace Villkor_och_loopar
                 while (loop)
                 {
                     Console.Write("\nAnge startnummer: ");
-                    bool korrektInput = int.TryParse(Console.ReadLine(), out startnummer);
+                    int.TryParse(Console.ReadLine(), out startnummer);
 
                     if (startnummer < 1 && deltagare == 0)
                     {
@@ -61,9 +61,7 @@ namespace Villkor_och_loopar
 
                     if (starttimme == 0 && måltimme == 0 && startminut == 0 && målminut == 0)
                     {
-
                         sluttid = SecondsFix(startsekund, målsekund);
-
                     }
                     else if (totalSekunderStart > totalSekunderMål)
                     {

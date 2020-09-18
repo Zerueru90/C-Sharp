@@ -27,8 +27,7 @@ namespace Klasser
                 Console.Write("Namn: ");
                 namn = Console.ReadLine();
 
-                Console.Write("Ålder: ");
-                ålder = int.Parse(Console.ReadLine());
+                ålder = ReturnNumber("Ålder: ");
 
                 Console.WriteLine("------------------------------- \nBil information");
                 Console.Write("\nModel: ");
@@ -40,8 +39,7 @@ namespace Klasser
                 regdatum = DateTime.Today;
                 Console.Write($"Reg datum: {regdatum}");
 
-                Console.Write("\nVikt: ");
-                vikt = Convert.ToInt32(Console.ReadLine());
+                vikt = ReturnNumber("\nVikt: ");
 
                 Console.Write("Är detta en elbil, y/n: ");
                 string answer = Console.ReadLine();
@@ -84,6 +82,21 @@ namespace Klasser
                     loop = false;
                 }
             }
+        }
+
+        public static int ReturnNumber(string msg)
+        {
+            bool convertOK = false;
+            string input;
+            int nr;
+            do
+            {
+                Console.Write($"{msg} ");
+                input = Console.ReadLine();
+                convertOK = int.TryParse(input, out nr);
+
+            } while (!convertOK);
+            return nr;
         }
     }
 
