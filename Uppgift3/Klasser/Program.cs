@@ -13,7 +13,7 @@ namespace Klasser
         static void Main(string[] args)
         {
             string regnr, modellnamn, namn;
-            int vikt, ålder;
+            int vikt, ålder, ms;
             bool elbil = false, loop = true;
             DateTime regdatum;
 
@@ -40,6 +40,7 @@ namespace Klasser
                 Console.Write($"Reg datum: {regdatum}");
 
                 vikt = ReturnNumber("\nVikt: ");
+                ms = ReturnNumber("Mätarställning: ");
 
                 Console.Write("Är detta en elbil, y/n: ");
                 string answer = Console.ReadLine();
@@ -56,7 +57,7 @@ namespace Klasser
                     //Om någon inte skriver in yes eller no.
                 }
 
-                bil = new Bil(modellnamn, vikt, regdatum, elbil, regnr);
+                bil = new Bil(modellnamn, vikt, regdatum, elbil, regnr, ms);
 
                 person = new Person(namn, ålder, bil);
 
@@ -68,7 +69,7 @@ namespace Klasser
                     Console.WriteLine($"Namn: {item.Namn} " +
                                       $"\nÅlder: {item.Ålder} " +
                                       $"\nModel: {item.Bil.Modellnamn} " +
-                                      $"\nRegistreringsnummer: {item.Bil.RegNr} " +
+                                      $"\nRegistreringsnummer: {item.Bil.Regnr} " +
                                       $"\nReg Datum: {item.Bil.DateTime} " +
                                       $"\n {item.Bil.ToString()}");
                     Console.WriteLine("-------------------------------");
@@ -108,18 +109,40 @@ namespace Klasser
         public Boolean Elbil { get; set; }
 
         //Fält
-        public string Modellnamn;
-        protected decimal Milmätare;
-        public string RegNr;
+        private string _modellnamn;
+        protected decimal _milmätare;
+        private string _regnr;
 
-        public Bil(string modellnamn, int vikt, DateTime dateTime, bool elbil, string regnr)
+        public Bil(string modellnamn, int vikt, DateTime dateTime, bool elbil, string regnr, int ms)
         {
             Vikt = vikt;
             DateTime = dateTime;
             Elbil = elbil;
+
             Modellnamn = modellnamn;
-            RegNr = regnr;
+            Regnr = regnr;
+            Milmätare = ms;
         }
+
+        //Åtkomstmodifierare
+        public decimal Milmätare
+        {
+            get { return this._milmätare; }
+            set { this._milmätare = value; }
+        }
+
+        public string Modellnamn
+        {
+            get { return this._modellnamn; }
+            set { this._modellnamn = value; }
+        }
+
+        public string Regnr
+        {
+            get { return this._regnr; }
+            set { this._regnr = value; }
+        }
+
 
         public override string ToString()
         {
@@ -133,8 +156,8 @@ namespace Klasser
 
         public string UppdateraMS(decimal ms)
         {
-            Milmätare += ms;
-            string stringMS = Convert.ToString(Milmätare);
+            _milmätare += ms;
+            string stringMS = Convert.ToString(_milmätare);
             return stringMS;
         }
     }

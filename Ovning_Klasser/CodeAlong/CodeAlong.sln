@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonApplikation", "PersonApplikation\PersonApplikation.csproj", "{B07D929D-9256-4E36-A881-59D0F74D1BB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonApplikation", "PersonApplikation\PersonApplikation.csproj", "{B07D929D-9256-4E36-A881-59D0F74D1BB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlasserÖvning", "KlasserÖvning\KlasserÖvning.csproj", "{447EBD6F-52A9-47E6-AA1A-4FB60B3C489D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B07D929D-9256-4E36-A881-59D0F74D1BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B07D929D-9256-4E36-A881-59D0F74D1BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B07D929D-9256-4E36-A881-59D0F74D1BB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{447EBD6F-52A9-47E6-AA1A-4FB60B3C489D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{447EBD6F-52A9-47E6-AA1A-4FB60B3C489D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{447EBD6F-52A9-47E6-AA1A-4FB60B3C489D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{447EBD6F-52A9-47E6-AA1A-4FB60B3C489D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
