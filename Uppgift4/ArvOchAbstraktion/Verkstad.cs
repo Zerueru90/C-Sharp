@@ -27,7 +27,7 @@ namespace ArvOchAbstraktion
         {
             FordonIVerkstad.Add(fordon);
             System.Console.WriteLine("-----------------------------");
-            System.Console.WriteLine("\nFordon tillagd i verkstad");
+            System.Console.WriteLine("Fordon inlagd i verkstad");
             System.Console.WriteLine("-----------------------------");
         }
         public void tabortFordon(Fordon fordon, string regnr)
@@ -38,7 +38,7 @@ namespace ArvOchAbstraktion
                 {
                     FordonIVerkstad.Remove(fordon);
                     System.Console.WriteLine("-----------------------------");
-                    System.Console.WriteLine("\nFordon borttagen ifrån verkstad");
+                    System.Console.WriteLine("Fordon borttagen ifrån verkstad");
                     System.Console.WriteLine("-----------------------------");
                 }
             }

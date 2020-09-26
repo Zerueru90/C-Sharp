@@ -9,11 +9,14 @@ namespace ArvOchAbstraktion
     class Program
     {
         public static StartHumanProgram startHumanProgram { get; set; }
-        
+
+        private static StartaVerkstadProgram startaVerkstadProgram;
+
         static void Main(string[] args)
         {
+
             startHumanProgram = new StartHumanProgram();
-            //StartaCarProgram startCarProgram = new StartaCarProgram();
+            startaVerkstadProgram = new StartaVerkstadProgram();
             bool loop = true;
 
             Console.WriteLine("Vällkommen till Fordon programmet");
@@ -29,11 +32,10 @@ namespace ArvOchAbstraktion
                 {
                     case 1:
                         startHumanProgram.Start();
-                        //startCarProgram.Start();
                         break;
                     case 2:
                         //Sätt in bilar i vst, interface.
-                        StartaVerkstadProgram startaVerkstadProgram = new StartaVerkstadProgram();
+                        startaVerkstadProgram.startHumanProgram = startHumanProgram;
                         startaVerkstadProgram.Start();
                         break;
                     case 3:

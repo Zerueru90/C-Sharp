@@ -23,7 +23,7 @@ namespace ArvOchAbstraktion
                 _listaPersoner = value;
             }
         }
-        public Person nyPerson { get; set; }
+        private Person nyPerson { get; set; }
 
         public void Start()
         {
@@ -44,7 +44,7 @@ namespace ArvOchAbstraktion
             startCarProgram.BilÄgare = nyPerson;
             startCarProgram.Start();
 
-            ListaPersoner.Add(nyPerson); 
+            ListaPersoner.Add(nyPerson);
         }
     }
 }

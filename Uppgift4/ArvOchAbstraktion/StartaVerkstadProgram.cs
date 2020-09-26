@@ -7,27 +7,26 @@ namespace ArvOchAbstraktion
 {
     class StartaVerkstadProgram
     {
-        //fel finns redan i program.cs
-        public static StartHumanProgram startHumanProgram { get; set; }
+        public StartHumanProgram startHumanProgram { get; set; }
 
-        public Person PersonFordon { get; set; }
+        public static Verkstad SkickaBilTillOchFrånVerkstad { get; set; }
 
         /*
-         
          Fråga användaren om namn
          Skriv ut lista av personens bilar.
          Sen starta Start() så att kund kan använda listan för att skriva in reg nr
-         
-         
          */
 
-        public static Verkstad SkickaBilTillOchFrånVerkstad { get; set; }
         public void Start()
         {
             bool loopVerkstad = true;
             do
             {
                 Console.WriteLine("\nVällkommen till verkstaden");
+                Console.Write("Vad är ditt namn: ");
+                string kundNamn = Console.ReadLine();
+                HämtaPersonFordon(kundNamn);
+
                 Console.WriteLine("\nSkicka in bilen till verkstad: [1]");
                 Console.WriteLine("Hämta bilen från verkstad: [2]");
                 Console.WriteLine("Klar: [3]");
@@ -60,7 +59,18 @@ namespace ArvOchAbstraktion
             } while (loopVerkstad);
         }
 
-        public static Fordon LetaEfterBil(string regnr)
+        public void HämtaPersonFordon(string kundNamn)
+        {
+            foreach (var item in startHumanProgram.ListaPersoner)
+            {
+                if (kundNamn == item.Namn)
+                {
+                    Program.SkrivUtPersonOchBil(item.Namn);
+                }
+            }
+        }
+
+        public Fordon LetaEfterBil(string regnr)
         {
             foreach (var item in startHumanProgram.ListaPersoner)
             {
