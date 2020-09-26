@@ -1,52 +1,79 @@
-﻿using System;
+﻿using Klasser;
+using System;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace ArvOchAbstraktion
 {
-    class Program 
+    class Program
     {
-        /*
-            När du fått det att fungera kan du prova att skapa en ny klass, VerkstadV2, 
-            ärva av IVerkstad men skriva annan funktionalitet. 
-            Se att användning av IVerkstad i Main inte påverkas. (Styrkan med ett interface).
-        */
+        public static StartHumanProgram startHumanProgram { get; set; }
+        
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            startHumanProgram = new StartHumanProgram();
+            //StartaCarProgram startCarProgram = new StartaCarProgram();
+            bool loop = true;
 
-            Verkstad vst = new Verkstad();
-            vst.läggtillFordon();
+            Console.WriteLine("Vällkommen till Fordon programmet");
+            do
+            {
+                Console.WriteLine("\nRegistrera ny ägare: [1]");
+                Console.WriteLine("Skicka bilar till verkstad: [2]");
+                Console.WriteLine("Avsluta program: [3]");
+                Console.WriteLine("Skriv ut bilar: [4]");
+                Console.Write("Val: ");
+                int val = int.Parse(Console.ReadLine());
+                switch (val)
+                {
+                    case 1:
+                        startHumanProgram.Start();
+                        //startCarProgram.Start();
+                        break;
+                    case 2:
+                        //Sätt in bilar i vst, interface.
+                        StartaVerkstadProgram startaVerkstadProgram = new StartaVerkstadProgram();
+                        startaVerkstadProgram.Start();
+                        break;
+                    case 3:
+                        loop = false;
+                        Console.WriteLine("Ciao");
+                        Console.ReadLine();
+                        break;
+                    case 4:
 
+                        Console.Write("Skriv namn på bilägaren: ");
+                        string sökNamn = Console.ReadLine();
+                        SkrivUtPersonOchBil(sökNamn);
+
+                        break;
+                    default:
+                        break;
+                }
+            } while (loop);
         }
-
-    }
-    interface IVerkstad
-    {
-        void läggtillFordon();
-        void tabortFordon();
-    }
-
-    class Verkstad : IVerkstad
-    {
-        public void läggtillFordon()
+        public static void SkrivUtPersonOchBil(string namn)
         {
+            foreach (var item in startHumanProgram.ListaPersoner)
+            {
+                if (item.Namn == namn)
+                {
+                    Console.WriteLine($"Namn: {item.Namn} " +
+                                      $"\nÅlder: {item.Ålder}");
 
-        }
-        public void tabortFordon()
-        {
-
-        }
-    }
-
-    class VerkstadV2 : IVerkstad
-    {
-        public void läggtillFordon()
-        {
-
-        }
-        public void tabortFordon()
-        {
-
+                    foreach (var item2 in item.Fordon)
+                    {
+                        Console.WriteLine("\n-------------------------");
+                        Console.WriteLine($"Fordonstyp: {item2.GetFordonsTyp()}" +
+                                          $"\nNamn: {item2.Modellnamn} " +
+                                          $"\nReg: {item2.Registreringsnummer}" +
+                                          $"\nMS: {item2.Mätare}" +
+                                          $"\n{item2.GetSpecialTyp()}");
+                        Console.WriteLine("-------------------------");
+                    }
+                }
+            }
         }
     }
 }

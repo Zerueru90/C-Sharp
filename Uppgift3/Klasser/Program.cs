@@ -124,7 +124,6 @@ namespace Klasser
             Milmätare = ms;
         }
 
-        //Åtkomstmodifierare
         public decimal Milmätare
         {
             get { return this._milmätare; }
