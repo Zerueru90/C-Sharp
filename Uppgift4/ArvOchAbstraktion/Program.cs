@@ -34,7 +34,6 @@ namespace ArvOchAbstraktion
                         startHumanProgram.Start();
                         break;
                     case 2:
-                        //Sätt in bilar i vst, interface.
                         startaVerkstadProgram.startHumanProgram = startHumanProgram;
                         startaVerkstadProgram.Start();
                         break;
@@ -71,7 +70,8 @@ namespace ArvOchAbstraktion
                                           $"\nNamn: {item2.Modellnamn} " +
                                           $"\nReg: {item2.Registreringsnummer}" +
                                           $"\nMS: {item2.Mätare}" +
-                                          $"\n{item2.GetSpecialTyp()}");
+                                          $"\n{item2.GetSpecialTyp()}" +
+                                          $"\n{item2.GetFordonIVerkstadStatus()}");
                         Console.WriteLine("-------------------------");
                     }
                 }

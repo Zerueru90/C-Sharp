@@ -13,5 +13,9 @@ namespace Klasser
         public abstract string GetSpecialTyp();
 
         public abstract string GetFordonsTyp();
+
+        public abstract bool SetFordonIVerkstadStatus(bool status);
+
+        public abstract string GetFordonIVerkstadStatus();
     }
 }

@@ -4,6 +4,8 @@
     {
         public int Maxfart { get; set; }
 
+        public bool FordonIVerkstadStatus { get; set; }
+
         private string _fordonsTyp = "Motorcykel";
 
 
@@ -14,6 +16,25 @@
             Mätare = ms;
             Maxfart = maxfart;
         }
+
+        public override bool SetFordonIVerkstadStatus(bool status)
+        {
+            if (status)
+            {
+                return FordonIVerkstadStatus = true;
+            }
+            return FordonIVerkstadStatus = false;
+        }
+
+        public override string GetFordonIVerkstadStatus()
+        {
+            if (FordonIVerkstadStatus)
+            {
+                return $"**OBS** Denna fordon är i verkstad";
+            }
+            return $" ";
+        }
+
         public override string GetFordonsTyp()
         {
             return _fordonsTyp;

@@ -27,7 +27,7 @@ namespace ArvOchAbstraktion
         {
             FordonIVerkstad.Add(fordon);
             System.Console.WriteLine("-----------------------------");
-            System.Console.WriteLine("Fordon inlagd i verkstad");
+            System.Console.WriteLine("Fordon skickad till verkstad");
             System.Console.WriteLine("-----------------------------");
         }
         public void tabortFordon(Fordon fordon, string regnr)

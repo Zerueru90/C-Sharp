@@ -11,24 +11,20 @@ namespace ArvOchAbstraktion
 
         public static Verkstad SkickaBilTillOchFrånVerkstad { get; set; }
 
-        /*
-         Fråga användaren om namn
-         Skriv ut lista av personens bilar.
-         Sen starta Start() så att kund kan använda listan för att skriva in reg nr
-         */
-
         public void Start()
         {
             bool loopVerkstad = true;
             do
             {
+                SkickaBilTillOchFrånVerkstad = new Verkstad();
+
                 Console.WriteLine("\nVällkommen till verkstaden");
                 Console.Write("Vad är ditt namn: ");
                 string kundNamn = Console.ReadLine();
-                HämtaPersonFordon(kundNamn);
+                SkrivUtKundsFordon(kundNamn);
 
-                Console.WriteLine("\nSkicka in bilen till verkstad: [1]");
-                Console.WriteLine("Hämta bilen från verkstad: [2]");
+                Console.WriteLine("\nSkicka fordonet till verkstad: [1]");
+                Console.WriteLine("Hämta ditt fordon från verkstad: [2]");
                 Console.WriteLine("Klar: [3]");
                 Console.Write("Val: ");
                 int verkstadVal = int.Parse(Console.ReadLine());
@@ -39,15 +35,15 @@ namespace ArvOchAbstraktion
                         Console.Write("Skriv in regnr: ");
                         string regnr = Console.ReadLine();
                         var obj = LetaEfterBil(regnr);
-                        SkickaBilTillOchFrånVerkstad = new Verkstad();
                         SkickaBilTillOchFrånVerkstad.läggtillFordon(obj);
+                        obj.SetFordonIVerkstadStatus(true);
                         break;
                     case 2:
                         Console.Write("Skriv in regnr: ");
                         string regnrTabort = Console.ReadLine();
                         var objTabort = LetaEfterBil(regnrTabort);
-                        SkickaBilTillOchFrånVerkstad = new Verkstad();
                         SkickaBilTillOchFrånVerkstad.tabortFordon(objTabort, regnrTabort);
+                        objTabort.SetFordonIVerkstadStatus(false);
                         break;
                     case 3:
                         loopVerkstad = false;
@@ -59,7 +55,7 @@ namespace ArvOchAbstraktion
             } while (loopVerkstad);
         }
 
-        public void HämtaPersonFordon(string kundNamn)
+        private void SkrivUtKundsFordon(string kundNamn)
         {
             foreach (var item in startHumanProgram.ListaPersoner)
             {
@@ -70,7 +66,7 @@ namespace ArvOchAbstraktion
             }
         }
 
-        public Fordon LetaEfterBil(string regnr)
+        private Fordon LetaEfterBil(string regnr)
         {
             foreach (var item in startHumanProgram.ListaPersoner)
             {

@@ -1,8 +1,12 @@
-﻿namespace Klasser
+﻿using System.Globalization;
+
+namespace Klasser
 {
     public class Bil : Fordon
     {
         public bool Dragkrok { get; set; }
+
+        public bool FordonIVerkstadStatus { get; set; }
 
         private string _fordonsTyp = "Bil";
 
@@ -12,6 +16,24 @@
             Registreringsnummer = regnr;
             Mätare = ms;
             SetHook(dragkrock);
+        }
+
+        public override bool SetFordonIVerkstadStatus(bool status)
+        {
+            if (status)
+            {
+                return FordonIVerkstadStatus = true;
+            }
+            return FordonIVerkstadStatus = false;
+        }
+
+        public override string GetFordonIVerkstadStatus()
+        {
+            if (FordonIVerkstadStatus)
+            {
+                return $"**OBS** Denna fordon är i verkstad";
+            }
+            return $" ";
         }
 
         public override string GetFordonsTyp()
@@ -30,8 +52,11 @@
 
         public override string GetSpecialTyp()
         {
-            return $"Dragkrock: {Dragkrok}";
+            if (Dragkrok)
+            {
+                return $"Dragkrock: Ja";
+            }
+            return $"Dragkrock: Nej";
         }
-
     }
 }
