@@ -7,16 +7,18 @@ namespace ArvOchAbstraktion
 {
     class StartaVerkstadProgram
     {
-        public StartHumanProgram startHumanProgram { get; set; }
+        public StartHumanProgram StartHumanProgram { get; set; }
 
-        public static Verkstad SkickaBilTillOchFrånVerkstad { get; set; }
+        private static Verkstad _skickaBilTillOchFrånVerkstad;
+        private string _regNr;
+        private Fordon _fordonObj;
 
         public void Start()
         {
             bool loopVerkstad = true;
             do
             {
-                SkickaBilTillOchFrånVerkstad = new Verkstad();
+                _skickaBilTillOchFrånVerkstad = new Verkstad();
 
                 Console.WriteLine("\nVällkommen till verkstaden");
                 Console.Write("Vad är ditt namn: ");
@@ -33,17 +35,17 @@ namespace ArvOchAbstraktion
                 {
                     case 1:
                         Console.Write("Skriv in regnr: ");
-                        string regnr = Console.ReadLine();
-                        var obj = LetaEfterBil(regnr);
-                        SkickaBilTillOchFrånVerkstad.läggtillFordon(obj);
-                        obj.SetFordonIVerkstadStatus(true);
+                        _regNr = Console.ReadLine();
+                        _fordonObj = LetaEfterBil(_regNr);
+                        _skickaBilTillOchFrånVerkstad.LäggtillFordon(_fordonObj);
+                        _fordonObj.SetFordonIVerkstadStatus(true);
                         break;
                     case 2:
                         Console.Write("Skriv in regnr: ");
-                        string regnrTabort = Console.ReadLine();
-                        var objTabort = LetaEfterBil(regnrTabort);
-                        SkickaBilTillOchFrånVerkstad.tabortFordon(objTabort, regnrTabort);
-                        objTabort.SetFordonIVerkstadStatus(false);
+                        _regNr = Console.ReadLine();
+                        _fordonObj = LetaEfterBil(_regNr);
+                        _skickaBilTillOchFrånVerkstad.TabortFordon(_fordonObj, _regNr);
+                        _fordonObj.SetFordonIVerkstadStatus(false);
                         break;
                     case 3:
                         loopVerkstad = false;
@@ -57,22 +59,23 @@ namespace ArvOchAbstraktion
 
         private void SkrivUtKundsFordon(string kundNamn)
         {
-            foreach (var item in startHumanProgram.ListaPersoner)
+            foreach (var item in StartHumanProgram.ListaPersoner)
             {
                 if (kundNamn == item.Namn)
                 {
-                    Program.SkrivUtPersonOchBil(item.Namn);
+                    SkrivUtFunktion.startHumanProgram = StartHumanProgram;
+                    SkrivUtFunktion.SkrivUtPersonOchBil(kundNamn);
                 }
             }
         }
 
-        private Fordon LetaEfterBil(string regnr)
+        private Fordon LetaEfterBil(string registreringsnummer)
         {
-            foreach (var item in startHumanProgram.ListaPersoner)
+            foreach (var item in StartHumanProgram.ListaPersoner)
             {
                 foreach (var item2 in item.Fordon)
                 {
-                    if (item2.Registreringsnummer == regnr)
+                    if (item2.Registreringsnummer == registreringsnummer)
                     {
                         return item2;
                     }
@@ -82,6 +85,5 @@ namespace ArvOchAbstraktion
             }
             return null;
         }
-
     }
 }

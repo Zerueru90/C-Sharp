@@ -4,7 +4,7 @@ namespace ArvOchAbstraktion
 {
     public interface IVerkstad
     {
-        void läggtillFordon(Fordon fordon);
-        void tabortFordon(Fordon fordon, string regnr);
+        void LäggtillFordon(Fordon fordon);
+        void TabortFordon(Fordon fordon, string regnr);
     }
 }

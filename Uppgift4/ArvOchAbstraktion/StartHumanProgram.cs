@@ -6,6 +6,8 @@ namespace ArvOchAbstraktion
 {
     class StartHumanProgram
     {
+        private Person _nyPerson;
+
         private List<Person> _listaPersoner;
 
         public List<Person> ListaPersoner
@@ -23,7 +25,6 @@ namespace ArvOchAbstraktion
                 _listaPersoner = value;
             }
         }
-        private Person nyPerson { get; set; }
 
         public void Start()
         {
@@ -36,15 +37,15 @@ namespace ArvOchAbstraktion
             Console.Write("Ålder: ");
             ålder = int.Parse(Console.ReadLine());
 
-            nyPerson = new Person();
-            nyPerson.Namn = namn;
-            nyPerson.Ålder = ålder;
+            _nyPerson = new Person();
+            _nyPerson.Namn = namn;
+            _nyPerson.Ålder = ålder;
 
             StartaCarProgram startCarProgram = new StartaCarProgram();
-            startCarProgram.BilÄgare = nyPerson;
+            startCarProgram.BilÄgare = _nyPerson;
             startCarProgram.Start();
 
-            ListaPersoner.Add(nyPerson);
+            ListaPersoner.Add(_nyPerson);
         }
     }
 }

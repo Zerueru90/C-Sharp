@@ -14,7 +14,6 @@ namespace ArvOchAbstraktion
 
         static void Main(string[] args)
         {
-
             startHumanProgram = new StartHumanProgram();
             startaVerkstadProgram = new StartaVerkstadProgram();
             bool loop = true;
@@ -34,7 +33,7 @@ namespace ArvOchAbstraktion
                         startHumanProgram.Start();
                         break;
                     case 2:
-                        startaVerkstadProgram.startHumanProgram = startHumanProgram;
+                        startaVerkstadProgram.StartHumanProgram = startHumanProgram;
                         startaVerkstadProgram.Start();
                         break;
                     case 3:
@@ -43,39 +42,15 @@ namespace ArvOchAbstraktion
                         Console.ReadLine();
                         break;
                     case 4:
-
                         Console.Write("Skriv namn på bilägaren: ");
                         string sökNamn = Console.ReadLine();
-                        SkrivUtPersonOchBil(sökNamn);
-
+                        SkrivUtFunktion.startHumanProgram = startHumanProgram;
+                        SkrivUtFunktion.SkrivUtPersonOchBil(sökNamn);
                         break;
                     default:
                         break;
                 }
             } while (loop);
-        }
-        public static void SkrivUtPersonOchBil(string namn)
-        {
-            foreach (var item in startHumanProgram.ListaPersoner)
-            {
-                if (item.Namn == namn)
-                {
-                    Console.WriteLine($"Namn: {item.Namn} " +
-                                      $"\nÅlder: {item.Ålder}");
-
-                    foreach (var item2 in item.Fordon)
-                    {
-                        Console.WriteLine("\n-------------------------");
-                        Console.WriteLine($"Fordonstyp: {item2.GetFordonsTyp()}" +
-                                          $"\nNamn: {item2.Modellnamn} " +
-                                          $"\nReg: {item2.Registreringsnummer}" +
-                                          $"\nMS: {item2.Mätare}" +
-                                          $"\n{item2.GetSpecialTyp()}" +
-                                          $"\n{item2.GetFordonIVerkstadStatus()}");
-                        Console.WriteLine("-------------------------");
-                    }
-                }
-            }
         }
     }
 }

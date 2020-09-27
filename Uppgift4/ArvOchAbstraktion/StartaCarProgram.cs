@@ -6,15 +6,16 @@ namespace ArvOchAbstraktion
 {
     class StartaCarProgram
     {
-        Klasser.Bil bil;
-        Klasser.Motorcykel mc;
-        Klasser.Buss buss;
-        Klasser.Lastbil lb;
-        public string BilModellNamn { get; set; }
-        public string Registreringsnummer { get; set; }
-        public string Mätare { get; set; }
+        public Person BilÄgare { get; set; }
 
-        public Person BilÄgare { get; set; } //Sättar jag från StartHumanProgram så att jag inte behöver instansiera en BilÄgare = new Person();
+        private Klasser.Bil _bil;
+        private Klasser.Motorcykel _mc;
+        private Klasser.Buss _buss;
+        private Klasser.Lastbil _lb;
+
+        private string _bilModellNamn;
+        private string _registreringsnummer;
+        private string _mätare;
 
         public void Start()
         {
@@ -36,33 +37,33 @@ namespace ArvOchAbstraktion
                         SkrivIn();
                         Console.Write("Har bilen dragkrock? y/n: ");
                         string svarDragKrock = Console.ReadLine();
-                        bil = new Klasser.Bil(BilModellNamn, Mätare, Registreringsnummer, svarDragKrock);
+                        _bil = new Klasser.Bil(_bilModellNamn, _mätare, _registreringsnummer, svarDragKrock);
 
-                        BilÄgare.Fordon.Add(bil);
+                        BilÄgare.Fordon.Add(_bil);
                         break;
                     case 2:
                         SkrivIn();
                         Console.Write("Vad är maxfarten för MC: ");
                         int svarMC = int.Parse(Console.ReadLine());
-                        mc = new Klasser.Motorcykel(BilModellNamn, Mätare, Registreringsnummer, svarMC);
+                        _mc = new Klasser.Motorcykel(_bilModellNamn, _mätare, _registreringsnummer, svarMC);
 
-                        BilÄgare.Fordon.Add(mc);
+                        BilÄgare.Fordon.Add(_mc);
                         break;
                     case 3:
                         SkrivIn();
                         Console.Write("Hur många passagerare?: ");
                         int svarBuss = int.Parse(Console.ReadLine());
-                        buss = new Klasser.Buss(BilModellNamn, Mätare, Registreringsnummer, svarBuss);
+                        _buss = new Klasser.Buss(_bilModellNamn, _mätare, _registreringsnummer, svarBuss);
 
-                        BilÄgare.Fordon.Add(buss);
+                        BilÄgare.Fordon.Add(_buss);
                         break;
                     case 4:
                         SkrivIn();
                         Console.Write("Vad är maxlasten?: ");
                         int svarLB = int.Parse(Console.ReadLine());
-                        lb = new Klasser.Lastbil(BilModellNamn, Mätare, Registreringsnummer, svarLB);
+                        _lb = new Klasser.Lastbil(_bilModellNamn, _mätare, _registreringsnummer, svarLB);
 
-                        BilÄgare.Fordon.Add(lb);
+                        BilÄgare.Fordon.Add(_lb);
                         break;
                     case 5:
                         loop = false;
@@ -74,14 +75,14 @@ namespace ArvOchAbstraktion
             } while (loop);
         }
 
-        public void SkrivIn()
+        private void SkrivIn()
         {
             Console.Write("Modellnamn: ");
-            BilModellNamn = Console.ReadLine();
+            _bilModellNamn = Console.ReadLine();
             Console.Write("Registreringsnummer: ");
-            Registreringsnummer = Console.ReadLine();
+            _registreringsnummer = Console.ReadLine();
             Console.Write("Mätarställning: ");
-            Mätare = Console.ReadLine();
+            _mätare = Console.ReadLine();
         }
     }
 }
