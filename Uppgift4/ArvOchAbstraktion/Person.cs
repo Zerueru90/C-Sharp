@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ArvOchAbstraktion
 {
-    public class Person
+    public class Person 
     {
         public String Namn { get; set; }
         public Int32 Ålder { get; set; }

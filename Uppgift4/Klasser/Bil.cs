@@ -17,6 +17,23 @@ namespace Klasser
             Mätare = ms;
             SetHook(dragkrock);
         }
+        public bool SetHook(string dragkrok)
+        {
+            if (dragkrok == "y")
+            {
+                return Dragkrok = true;
+            }
+            return Dragkrok = false;
+        }
+
+        public override string GetSpecialTyp()
+        {
+            if (Dragkrok)
+            {
+                return $"Dragkrock: Ja";
+            }
+            return $"Dragkrock: Nej";
+        }
 
         public override bool SetFordonIVerkstadStatus(bool status)
         {
@@ -39,24 +56,6 @@ namespace Klasser
         public override string GetFordonsTyp()
         {
             return _fordonsTyp;
-        }
-
-        public bool SetHook(string dragkrok)
-        {
-            if (dragkrok == "y")
-            {
-                return Dragkrok = true;
-            }
-                return Dragkrok = false;
-        }
-
-        public override string GetSpecialTyp()
-        {
-            if (Dragkrok)
-            {
-                return $"Dragkrock: Ja";
-            }
-            return $"Dragkrock: Nej";
         }
     }
 }

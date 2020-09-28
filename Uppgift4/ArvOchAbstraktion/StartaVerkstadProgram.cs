@@ -9,7 +9,7 @@ namespace ArvOchAbstraktion
     {
         public StartHumanProgram StartHumanProgram { get; set; }
 
-        private static Verkstad _skickaBilTillOchFrånVerkstad;
+        private static IVerkstad _skickaBilTillOchFrånVerkstad;
         private string _regNr;
         private Fordon _fordonObj;
 
@@ -23,27 +23,26 @@ namespace ArvOchAbstraktion
                 Console.WriteLine("\nVällkommen till verkstaden");
                 Console.Write("Vad är ditt namn: ");
                 string kundNamn = Console.ReadLine();
-                SkrivUtKundsFordon(kundNamn);
+                SkrivUtFunktion.StartHumanProgram = StartHumanProgram;
+                SkrivUtFunktion.SkrivUtPersonOchBil(kundNamn);
 
                 Console.WriteLine("\nSkicka fordonet till verkstad: [1]");
                 Console.WriteLine("Hämta ditt fordon från verkstad: [2]");
-                Console.WriteLine("Klar: [3]");
+                Console.WriteLine("Avsluta: [3]");
                 Console.Write("Val: ");
                 int verkstadVal = int.Parse(Console.ReadLine());
+
+                Console.Write("Skriv in regnr: ");
+                _regNr = Console.ReadLine();
+                _fordonObj = LetaEfterBil(_regNr);
 
                 switch (verkstadVal)
                 {
                     case 1:
-                        Console.Write("Skriv in regnr: ");
-                        _regNr = Console.ReadLine();
-                        _fordonObj = LetaEfterBil(_regNr);
                         _skickaBilTillOchFrånVerkstad.LäggtillFordon(_fordonObj);
                         _fordonObj.SetFordonIVerkstadStatus(true);
                         break;
                     case 2:
-                        Console.Write("Skriv in regnr: ");
-                        _regNr = Console.ReadLine();
-                        _fordonObj = LetaEfterBil(_regNr);
                         _skickaBilTillOchFrånVerkstad.TabortFordon(_fordonObj, _regNr);
                         _fordonObj.SetFordonIVerkstadStatus(false);
                         break;
@@ -55,18 +54,6 @@ namespace ArvOchAbstraktion
                 }
 
             } while (loopVerkstad);
-        }
-
-        private void SkrivUtKundsFordon(string kundNamn)
-        {
-            foreach (var item in StartHumanProgram.ListaPersoner)
-            {
-                if (kundNamn == item.Namn)
-                {
-                    SkrivUtFunktion.startHumanProgram = StartHumanProgram;
-                    SkrivUtFunktion.SkrivUtPersonOchBil(kundNamn);
-                }
-            }
         }
 
         private Fordon LetaEfterBil(string registreringsnummer)

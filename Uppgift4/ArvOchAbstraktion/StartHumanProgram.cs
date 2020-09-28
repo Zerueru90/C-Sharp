@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Klasser;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace ArvOchAbstraktion
 {
     class StartHumanProgram
     {
-        private Person _nyPerson;
+        private Person _nyPerson;//<<<<<<----------------------------///
 
         private List<Person> _listaPersoner;
 
@@ -28,22 +29,45 @@ namespace ArvOchAbstraktion
 
         public void Start()
         {
-            string namn;
-            int ålder;
+            Console.WriteLine("Vill du mata in egna värden eller låta programmet skapa en massa data?");
+            Console.WriteLine("Egen inmatning: [1]");
+            Console.WriteLine("Dummy data: [2]");
+            Console.Write("Val: ");
+            int val = int.Parse(Console.ReadLine());
 
-            Console.Write("\nNamn: ");
-            namn = Console.ReadLine();
+            switch (val)
+            {
+                case 1:
+                    if (_listaPersoner != null)
+                    {
+                        _listaPersoner.Clear();
+                    }
+                    string namn;
+                    int ålder;
 
-            Console.Write("Ålder: ");
-            ålder = int.Parse(Console.ReadLine());
+                    Console.Write("\nNamn: ");
+                    namn = Console.ReadLine();
 
-            _nyPerson = new Person();
-            _nyPerson.Namn = namn;
-            _nyPerson.Ålder = ålder;
+                    Console.Write("Ålder: ");
+                    ålder = int.Parse(Console.ReadLine());
 
-            StartaCarProgram startCarProgram = new StartaCarProgram();
-            startCarProgram.BilÄgare = _nyPerson;
-            startCarProgram.Start();
+                    _nyPerson = new Person();
+                    _nyPerson.Namn = namn;
+                    _nyPerson.Ålder = ålder;
+
+                    StartaCarProgram startCarProgram = new StartaCarProgram();
+                    startCarProgram.BilÄgare = _nyPerson;//<<<<<<----------------------------///
+                    startCarProgram.Start();
+
+                    break;
+                case 2:
+                    //DummyData.StartHumanProgram.ListaPersoner = ListaPersoner;
+                    //_nyPerson = DummyData.LoadDummiesToList();
+                    break;
+
+                default:
+                    break;
+            }
 
             ListaPersoner.Add(_nyPerson);
         }

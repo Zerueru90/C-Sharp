@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Klasser;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,11 +7,11 @@ namespace ArvOchAbstraktion
 {
     static class SkrivUtFunktion
     {
-        public static StartHumanProgram startHumanProgram { get; set; }
+        public static StartHumanProgram StartHumanProgram { get; set; }
 
         public static void SkrivUtPersonOchBil(string namn)
         {
-            foreach (var item in startHumanProgram.ListaPersoner)
+            foreach (var item in StartHumanProgram.ListaPersoner)
             {
                 if (item.Namn == namn)
                 {
@@ -30,6 +31,7 @@ namespace ArvOchAbstraktion
                     }
                 }
             }
+
         }
     }
 }
