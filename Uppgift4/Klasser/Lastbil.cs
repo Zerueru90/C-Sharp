@@ -7,7 +7,7 @@
 
         private string _fordonsTyp = "Lastbil";
 
-        public Lastbil(string namn, string regnr, string ms, int maxlast)
+        public Lastbil(string namn, string regnr, int ms, int maxlast)
         {
             Modellnamn = namn;
             Registreringsnummer = regnr;

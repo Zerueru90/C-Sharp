@@ -7,12 +7,12 @@ namespace ArvOchAbstraktion
 {
     class StartaCarProgram
     {
-        public Person BilÄgare { get; set; }//<<<<<<----------------------------///
-
-        private Fordon _fordon;
+        public Person BilÄgare { get; set; }
+         
         private string _bilModellNamn;
         private string _registreringsnummer;
-        private string _mätare;
+        private int _mätare;
+        private int _specialTyp;
 
         public void Start()
         {
@@ -25,68 +25,48 @@ namespace ArvOchAbstraktion
                 Console.WriteLine("Buss [3]");
                 Console.WriteLine("Lastbil [4]");
                 Console.WriteLine("Avsluta [5]");
-                Console.Write("\nVal: ");
-                int val = int.Parse(Console.ReadLine());
+                int val = FelhanteringKlass.SwitchLimit("Val: ", 5);
 
                 switch (val)
                 {
                     case 1:
-
                         SkrivIn();
-                        Console.Write("Har bilen dragkrock? y/n: ");
-                        string svarDragKrock = Console.ReadLine();
-                        _fordon = new Bil(_bilModellNamn, _mätare, _registreringsnummer, svarDragKrock);
-                        BilÄgare.Fordon.Add(_fordon);
+                        string svarDragKrock = FelhanteringKlass.ReturnOnlyYesOrNo("Har bilen dragkrock? y/n: ");
+                        BilÄgare.Fordon.Add(new Bil(_bilModellNamn, _registreringsnummer, _mätare, svarDragKrock));
 
                         break;
-                    case 2:
-
+                    case 2: 
                         SkrivIn();
-                        Console.Write("Vad är maxfarten för MC: ");
-                        int svarMC = int.Parse(Console.ReadLine());
-                        _fordon = new Motorcykel(_bilModellNamn, _mätare, _registreringsnummer, svarMC);
-                        BilÄgare.Fordon.Add(_fordon);
+                        _specialTyp = FelhanteringKlass.ReturnNumber("Vad är maxfarten för MC: ");
+                        BilÄgare.Fordon.Add(new Motorcykel(_bilModellNamn, _registreringsnummer, _mätare,  _specialTyp));
 
                         break;
-                    case 3:
-
+                    case 3: 
                         SkrivIn();
-                        Console.Write("Hur många passagerare?: ");
-                        int svarBuss = int.Parse(Console.ReadLine());
-                        _fordon = new Buss(_bilModellNamn, _mätare, _registreringsnummer, svarBuss);
-                        BilÄgare.Fordon.Add(_fordon);
-
+                        _specialTyp = FelhanteringKlass.ReturnNumber("Hur många passagerare?: "); 
+                        BilÄgare.Fordon.Add(new Buss(_bilModellNamn, _registreringsnummer, _mätare, _specialTyp));
                         break;
-                    case 4:
 
+                    case 4: 
                         SkrivIn();
-                        Console.Write("Vad är maxlasten?: ");
-                        int svarLB = int.Parse(Console.ReadLine());
-                        _fordon = new Lastbil(_bilModellNamn, _mätare, _registreringsnummer, svarLB);
-                        BilÄgare.Fordon.Add(_fordon);
-
+                        _specialTyp = FelhanteringKlass.ReturnNumber("Vad är maxlasten?: "); 
+                        BilÄgare.Fordon.Add(new Lastbil(_bilModellNamn, _registreringsnummer, _mätare, _specialTyp));
                         break;
+
                     case 5:
                         loop = false;
                         break;
                     default:
                         break;
                 }
-
             } while (loop);
         }
 
-        /// <summary>
-        /// Kanske kan skicka denna metod till varje bil, buss, mc osv klass så kan vi ta bort konstruktorn.
-        /// </summary>
         private void SkrivIn()
-        {
-            Console.Write("Modellnamn: ");
-            _bilModellNamn = Console.ReadLine();
-            Console.Write("Registreringsnummer: ");
-            _registreringsnummer = Console.ReadLine();
-            Console.Write("Mätarställning: ");
-            _mätare = Console.ReadLine();
+        { 
+            _bilModellNamn = FelhanteringKlass.ReturnText("Modellnamn: "); 
+            _registreringsnummer = FelhanteringKlass.ReturnText("Registreringsnummer: ");
+            _mätare = FelhanteringKlass.ReturnNumber("Mätarställning: "); 
         }
     }
 }

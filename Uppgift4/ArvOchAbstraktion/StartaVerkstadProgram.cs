@@ -7,70 +7,76 @@ namespace ArvOchAbstraktion
 {
     class StartaVerkstadProgram
     {
-        public StartHumanProgram StartHumanProgram { get; set; }
-
-        private static IVerkstad _skickaBilTillOchFrånVerkstad;
+        private Verkstad _skickaBilTillOchFrånVerkstad { get; set; }
         private string _regNr;
+        string kundNamn;
         private Fordon _fordonObj;
-
+       
         public void Start()
         {
-            bool loopVerkstad = true;
-            do
-            {
-                _skickaBilTillOchFrånVerkstad = new Verkstad();
+            _skickaBilTillOchFrånVerkstad = new Verkstad();
 
+            if (FelhanteringKlass.CheckListEmpty(KlassLista<Person>.GeneriskLista.Count))
+            {
                 Console.WriteLine("\nVällkommen till verkstaden");
-                Console.Write("Vad är ditt namn: ");
-                string kundNamn = Console.ReadLine();
-                SkrivUtFunktion.StartHumanProgram = StartHumanProgram;
-                SkrivUtFunktion.SkrivUtPersonOchBil(kundNamn);
 
-                Console.WriteLine("\nSkicka fordonet till verkstad: [1]");
-                Console.WriteLine("Hämta ditt fordon från verkstad: [2]");
-                Console.WriteLine("Avsluta: [3]");
-                Console.Write("Val: ");
-                int verkstadVal = int.Parse(Console.ReadLine());
-
-                Console.Write("Skriv in regnr: ");
-                _regNr = Console.ReadLine();
-                _fordonObj = LetaEfterBil(_regNr);
-
-                switch (verkstadVal)
+                bool loopVerkstad = true;
+                do
                 {
-                    case 1:
-                        _skickaBilTillOchFrånVerkstad.LäggtillFordon(_fordonObj);
-                        _fordonObj.SetFordonIVerkstadStatus(true);
-                        break;
-                    case 2:
-                        _skickaBilTillOchFrånVerkstad.TabortFordon(_fordonObj, _regNr);
-                        _fordonObj.SetFordonIVerkstadStatus(false);
-                        break;
-                    case 3:
-                        loopVerkstad = false;
-                        break;
-                    default:
-                        break;
-                }
+                    SkrivUtFunktion.SkrivUtPersonOchBil(kundNamn = FelhanteringKlass.ReturnText("\nNamn: "));
+                    Console.WriteLine("\nSkicka fordonet till verkstad: [1]");
+                    Console.WriteLine("Hämta ditt fordon från verkstad: [2]");
+                    Console.WriteLine("Avsluta: [3]");
+                    int verkstadsVal = FelhanteringKlass.SwitchLimit("Val: ", 3);
 
-            } while (loopVerkstad);
-        }
-
-        private Fordon LetaEfterBil(string registreringsnummer)
-        {
-            foreach (var item in StartHumanProgram.ListaPersoner)
-            {
-                foreach (var item2 in item.Fordon)
-                {
-                    if (item2.Registreringsnummer == registreringsnummer)
+                    switch (verkstadsVal)
                     {
-                        return item2;
+                        case 1:
+                            LetaEfterBil();
+                            _skickaBilTillOchFrånVerkstad.LäggtillFordon(_fordonObj);
+                            _fordonObj.SetFordonIVerkstadStatus(true);
+                            break;
+                        case 2:
+                            LetaEfterBil();
+                            _skickaBilTillOchFrånVerkstad.TabortFordon(_fordonObj, _regNr);
+                            _fordonObj.SetFordonIVerkstadStatus(false);
+                            break;
+                        case 3:
+                            loopVerkstad = false;
+                            break;
+                        default:
+                            break;
                     }
-                    else
-                        Console.WriteLine("Bilen finns inte");
+
+                } while (loopVerkstad);
+            }
+            else
+            {
+                Console.WriteLine("\nInga fordon i garaget");
+            }
+        }
+        private void LetaEfterBil()
+        {
+            _regNr = FelhanteringKlass.ReturnText("\nReg nr: ");
+
+            foreach (var item in KlassLista<Person>.GeneriskLista)
+            {
+                if (item.Namn == kundNamn) //Lika gärna göra personnummer vilket är unikt för varje person //Men i denna värld existerar bara en pers = ett namn.
+                {
+                    foreach (var item2 in item.Fordon)
+                    {
+                        if (item2.Registreringsnummer == _regNr)
+                        {
+                            _fordonObj = item2;
+                        }
+                    }
                 }
             }
-            return null;
+            if (_fordonObj == null)
+            {
+                Console.WriteLine("Fel reg nr");
+                Start();
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using Klasser;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace ArvOchAbstraktion
+namespace Klasser
 {
-    public class Person 
+    public class Person
     {
         public String Namn { get; set; }
         public Int32 Ålder { get; set; }

@@ -9,7 +9,7 @@
         private string _fordonsTyp = "Motorcykel";
 
 
-        public Motorcykel(string namn, string regnr, string ms, int maxfart)
+        public Motorcykel(string namn, string regnr, int ms, int maxfart)
         {
             Modellnamn = namn;
             Registreringsnummer = regnr;

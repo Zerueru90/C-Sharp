@@ -10,7 +10,7 @@ namespace Klasser
 
         private string _fordonsTyp = "Bil";
 
-        public Bil(string namn, string regnr, string ms, string dragkrock)
+        public Bil(string namn, string regnr, int ms, string dragkrock)
         {
             Modellnamn = namn;
             Registreringsnummer = regnr;

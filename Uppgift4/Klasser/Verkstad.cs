@@ -1,45 +1,48 @@
-﻿using Klasser;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace ArvOchAbstraktion
+namespace Klasser
 {
     public class Verkstad : IVerkstad
     {
-        private List<Fordon> _fordonIVerkstad;
+        private List<Fordon> _fordonIGarage;
 
-        public List<Fordon> FordonIVerkstad
+        public List<Fordon> FordonIGarage
         {
             get
             {
-                if (_fordonIVerkstad == null)
+                if (_fordonIGarage == null)
                 {
-                    return _fordonIVerkstad = new List<Fordon>();
+                    return _fordonIGarage = new List<Fordon>();
                 }
-                return _fordonIVerkstad;
+                return _fordonIGarage;
             }
             set
             {
-                _fordonIVerkstad = value;
+                _fordonIGarage = value;
             }
         }
 
         public void LäggtillFordon(Fordon fordon)
         {
-            FordonIVerkstad.Add(fordon);
+            FordonIGarage.Add(fordon);
             System.Console.WriteLine("-----------------------------");
             System.Console.WriteLine("Fordon skickad till verkstad");
             System.Console.WriteLine("-----------------------------");
         }
         public void TabortFordon(Fordon fordon, string regnr)
         {
-            foreach (var item in FordonIVerkstad)
+            //IF FordinIGarage.Count() == 0 --> Garage is empty
+            foreach (var item in FordonIGarage)
             {
                 if (item.Registreringsnummer == regnr)
                 {
-                    FordonIVerkstad.Remove(fordon);
+                    FordonIGarage.Remove(fordon);
                     System.Console.WriteLine("-----------------------------");
                     System.Console.WriteLine("Fordon borttagen ifrån verkstad");
                     System.Console.WriteLine("-----------------------------");
+                    return;
                 }
             }
         }

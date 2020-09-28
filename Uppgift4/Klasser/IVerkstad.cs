@@ -1,6 +1,8 @@
-﻿using Klasser;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace ArvOchAbstraktion
+namespace Klasser
 {
     public interface IVerkstad
     {

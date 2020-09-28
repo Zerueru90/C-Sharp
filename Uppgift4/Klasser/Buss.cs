@@ -6,7 +6,7 @@
         public bool FordonIVerkstadStatus { get; set; }
         private string _fordonsTyp = "Buss";
 
-        public Buss(string namn, string regnr, string ms, int passagerare)
+        public Buss(string namn, string regnr, int ms, int passagerare)
         {
             Modellnamn = namn;
             Registreringsnummer = regnr;

@@ -8,7 +8,7 @@ namespace ArvOchAbstraktion
 {
     class Program
     {
-        public static StartHumanProgram StartHumanProgram { get; set; }
+        private static StartHumanProgram StartHumanProgram;
 
         private static StartaVerkstadProgram startaVerkstadProgram;
 
@@ -25,19 +25,14 @@ namespace ArvOchAbstraktion
                 Console.WriteLine("Skicka bilar till verkstad: [2]");
                 Console.WriteLine("Avsluta program: [3]");
                 Console.WriteLine("Skriv ut bilar: [4]");
-                Console.Write("Val: ");
-                int val = int.Parse(Console.ReadLine());
+                int val = FelhanteringKlass.SwitchLimit("Val: ", 4);
                 switch (val)
                 {
                     case 1:
                         StartHumanProgram.Start();
                         break;
                     case 2:
-                        startaVerkstadProgram.StartHumanProgram = StartHumanProgram;
                         startaVerkstadProgram.Start();
-                        //IVerkstad vst;
-                        //vst = new Verkstad();
-
                         break;
                     case 3:
                         loop = false;
@@ -45,9 +40,7 @@ namespace ArvOchAbstraktion
                         Console.ReadLine();
                         break;
                     case 4:
-                        Console.Write("Skriv namn på bilägaren: ");
-                        string sökNamn = Console.ReadLine();
-                        SkrivUtFunktion.StartHumanProgram = StartHumanProgram;
+                        string sökNamn = FelhanteringKlass.ReturnText("Skriv namn på bilägaren: ");
                         SkrivUtFunktion.SkrivUtPersonOchBil(sökNamn);
                         break;
                     default:
