@@ -1,6 +1,8 @@
 ﻿using Klasser;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace ArvOchAbstraktion
@@ -11,7 +13,7 @@ namespace ArvOchAbstraktion
         private string _regNr;
         string kundNamn;
         private Fordon _fordonObj;
-       
+
         public void Start()
         {
             _skickaBilTillOchFrånVerkstad = new Verkstad();
@@ -71,11 +73,12 @@ namespace ArvOchAbstraktion
                         }
                     }
                 }
-            }
-            if (_fordonObj == null)
-            {
-                Console.WriteLine("Fel reg nr");
-                Start();
+
+                if (_fordonObj == null)
+                {
+                    Console.WriteLine("Fel reg nr");
+                    Start();
+                }
             }
         }
     }

@@ -7,7 +7,7 @@ namespace ArvOchAbstraktion
 {
     class StartHumanProgram
     {
-        private Person _nyPerson;//<<<<<<----------------------------///
+        private Person _nyPerson;
 
         public void Start()
         {
@@ -20,20 +20,22 @@ namespace ArvOchAbstraktion
             {
                 case 1:
                     string namn;
-                    int ålder; 
+                    int ålder;
+                    StartaCarProgram startCarProgram;
+                    _nyPerson = new Person();
 
                     namn = FelhanteringKlass.ReturnText("\nNamn: "); 
                     ålder = FelhanteringKlass.ReturnNumber("Ålder: ");
 
-                    _nyPerson = new Person();
                     _nyPerson.Namn = namn;
                     _nyPerson.Ålder = ålder;
 
-                    StartaCarProgram startCarProgram = new StartaCarProgram();
+                    startCarProgram = new StartaCarProgram();
                     startCarProgram.BilÄgare = _nyPerson;
                     startCarProgram.Start();
 
                     KlassLista<Person>.GeneriskLista.Add(_nyPerson);
+
                     break;
                 case 2:
                     DummyData.LoadDummiesToList();

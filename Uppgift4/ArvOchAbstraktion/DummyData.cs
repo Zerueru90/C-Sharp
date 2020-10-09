@@ -23,7 +23,6 @@ namespace ArvOchAbstraktion
             for (int i = 0; i < NameArray.Length; i++)
             {
                 _nyPerson = new Person();
-
                 _nyPerson.Namn = NameArray[i];
                 _nyPerson.Ålder = AgeArray[i];
                 _nyBil = new Bil(BilModelArray[i], RegArray[i], MSArray[i], DragKrokArray[i]);
